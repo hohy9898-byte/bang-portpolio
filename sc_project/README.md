@@ -26,6 +26,7 @@
 
 ### 챗봇
 - 한국관광공사 TourAPI 4.0의 부산 데이터(숙박, 축제·공연·행사, 관광지, 레포츠, 문화시설, 쇼핑, 여행코스)를 근거로 OpenAI `gpt-5-mini`가 답변합니다.
+- OpenAI 호출은 Netlify Function(`/api/chat`)에서 처리해 API 키가 브라우저에 노출되지 않습니다.
 - 질문에 들어 있는 키워드로 관련 카테고리만 골라 프롬프트에 넣습니다. 매칭되는 카테고리가 없으면 전체 데이터를 사용합니다.
 - 이번 달·다음 달 축제 같은 빠른 질문 버튼, 로딩 표시, 오류 메시지를 제공합니다.
 
@@ -47,7 +48,7 @@
 | AI | OpenAI Chat Completions API (`gpt-5-mini`) | 자연어 질문을 관광 데이터에 맞춰 답변하기 위해 사용했습니다. |
 | Data | 한국관광공사 TourAPI 4.0 (JSON) | 공공 데이터로 부산의 축제·숙박 정보를 확보했습니다. |
 | Storage | 브라우저 localStorage | 짧은 프로젝트 기간 안에 백엔드 없이 게시판을 구현하기 위해 선택했습니다. |
-| Deploy | Netlify | SPA 라우팅을 리다이렉트 설정 하나로 처리할 수 있습니다. |
+| Deploy | Netlify, Netlify Functions | SPA 라우팅을 리다이렉트 설정 하나로 처리하고, 별도 서버 없이 API 키를 서버 쪽에 둘 수 있습니다. |
 
 ## 팀 구성과 역할
 
@@ -75,22 +76,27 @@
 - **문제:** 기능이 추가될 때마다(태그, 북마크, 이미지 등) 이전에 저장된 글에는 새 필드가 없어서 오류가 났습니다.
 - **해결:** 불러올 때 `normalizePosts()`로 빠진 필드를 기본값으로 채우고, localStorage 파싱에 실패해도 빈 목록으로 시작하도록 예외 처리를 했습니다.
 
+### 브라우저에 API 키가 노출된 문제
+- **문제:** 처음에는 `VITE_OPENAI_API_KEY`로 브라우저에서 OpenAI를 직접 호출했습니다. `VITE_` 환경 변수는 빌드 결과물에 그대로 들어가서, 배포된 사이트의 JS 파일에서 키를 볼 수 있었습니다.
+- **해결:** 키를 폐기하고, OpenAI 호출을 Netlify Function으로 옮겼습니다. 클라이언트는 질문만 보내고, 데이터 컨텍스트와 프롬프트는 서버에서 만듭니다. 프롬프트를 통째로 받지 않기 때문에 이 함수를 범용 OpenAI 프록시로 쓸 수 없고, 질문 길이도 500자로 제한했습니다.
+
 ## 실행 방법
 
 ```bash
 npm install
-cp .env.example .env   # VITE_OPENAI_API_KEY 값을 입력
-npm run dev
+cp .env.example .env   # OPENAI_API_KEY 값을 입력
+npx netlify dev        # Vite와 Netlify Function을 함께 실행 (http://localhost:8888)
 ```
+
+`npm run dev`만 실행하면 챗봇 API(`/api/chat`)가 뜨지 않습니다. 챗봇까지 확인하려면 `netlify dev`를 사용하세요.
 
 | 환경 변수 | 설명 |
 |---|---|
-| `VITE_OPENAI_API_KEY` | OpenAI API 키 |
-| `VITE_OPENAI_MODEL` | 사용할 모델 (예: `gpt-5-mini`) |
+| `OPENAI_API_KEY` | OpenAI API 키. 서버(Function)에서만 사용합니다. 배포 시 Netlify 사이트 설정의 Environment variables에 등록합니다. |
+| `OPENAI_MODEL` | 사용할 모델 (기본값 `gpt-5-mini`) |
 
 ## 한계와 개선 계획
 
-- **API 키 노출:** `VITE_` 환경 변수는 빌드 결과물에 그대로 들어가서, 배포된 사이트에서 API 키를 볼 수 있습니다. Netlify Functions 같은 서버리스 함수로 OpenAI 호출을 옮겨 키를 서버에만 두는 구조로 바꿀 계획입니다.
 - **게시글이 브라우저에만 저장됨:** localStorage를 쓰기 때문에 다른 사용자와 글이 공유되지 않습니다. 백엔드(DB)를 붙여야 실제 커뮤니티로 동작합니다.
 - **비밀번호를 평문으로 저장:** 서버로 옮길 때 해시로 저장하고, 서버에서 검증하도록 바꿔야 합니다.
 - **투표 제한이 브라우저 기준:** 저장소를 지우면 다시 투표할 수 있습니다. 서버 쪽에서 사용자나 IP 기준으로 제한해야 합니다.
