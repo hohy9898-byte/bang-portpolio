@@ -1,39 +1,43 @@
+# 도서 데이터 다루기 (Python 기초)
 
-a3 딕셔너리 내부의 딕셔너리를 순회하는 작법을 잊었었다.
-a4 딕셔너리 순회시 key와 value가 순서대로 변수에 할당됨을 몰랐었다.
-a5 메소드를 이용한 딕셔너리의 value추가 방법을 몰랐다.
-b4 람다구조로 딕셔너리를 정렬하는 작법에 대해서 몰랐다.
+알라딘 도서 데이터(JSON)를 파이썬으로 읽고, 원하는 조건으로 걸러내고 정리하는 연습을 한 SSAFY 1회차 관통 프로젝트다.
 
+- 기간: 2026.07.29
+- 인원: 개인
+- 기술: Python, json, pathlib
 
+## 주요 기능
 
+- JSON 파일을 읽어 제목, 저자 같은 필드를 뽑고 가격대별로 묶기 (A1~A5)
+- 도서 500권에서 조건에 맞는 책을 걸러내고 출간일, 할인율 순으로 정렬 (B1~B5)
+- 월별 평균 가격 계산, 카테고리 데이터 추출, 같은 시리즈의 책끼리 묶기 (C1~C3)
+- 테스트용 가상 도서 데이터를 만들고, 원본 파일은 시각을 붙여 백업 (`f116.py`)
 
+## 고민한 점
 
-# Images
+### 실행할 때마다 결과가 달라지는 가상 데이터
 
-![f101](skeleton/images/f101.png)
+가상 데이터를 랜덤으로 만들었더니 실행할 때마다 책 목록이 바뀌어서 결과를 비교할 수 없었다. `random.seed(42)`로 시드를 고정해 같은 데이터가 나오게 했다. 또 원본 `books_20.json`을 덮어쓰기 전에 `books_20.날짜_시각.bak.json`으로 복사해 두도록 했다.
 
-![f102](skeleton/images/f102.png)
+### 중첩된 딕셔너리 다루기
 
-![f103](skeleton/images/f103.png)
+API 응답은 `item` 리스트 안에 딕셔너리가 들어 있고, 그 안에 다시 `seriesInfo` 같은 딕셔너리가 있는 구조였다. 처음에는 바깥 리스트만 돌고 안쪽 값을 꺼내는 방법을 몰라 헤맸다. 한 단계씩 출력해 보면서 구조를 확인한 뒤 접근하는 습관이 생겼다.
 
-![f104](skeleton/images/f104.png)
+## 실행 방법
 
-![f105](skeleton/images/f105.png)
+```bash
+python skeleton/problem_A1.py
+```
 
-![f106](skeleton/images/f106.png)
+저장소 루트에서 실행해야 `./skeleton/data` 경로를 찾는다.
 
-![f107](skeleton/images/f107.png)
+## 배운 점
 
-![f108](skeleton/images/f108.png)
+- 딕셔너리 안의 딕셔너리를 순회하는 방법을 잊고 있었는데 다시 익혔다.
+- `for key, value in d.items()`처럼 순회할 때 key와 value가 순서대로 변수에 들어간다는 걸 몰랐었다.
+- `setdefault('1만원 미만', []).append(...)`처럼 메서드로 딕셔너리에 값을 추가하는 방법을 몰랐는데, 가격대별로 책을 묶으면서 배웠다.
+- `sorted(books, key=lambda book: book["pubDate"])`처럼 람다로 정렬 기준을 주는 방법을 처음 알았다.
 
-![f109](skeleton/images/f109.png)
+## 실행 결과
 
-![f110](skeleton/images/f110.png)
-
-![f111](skeleton/images/f111.png)
-
-![f112](skeleton/images/f112.png)
-
-![f113](skeleton/images/f113.png)
-
-![f116](skeleton/images/f116.png)
+결과 화면 캡처는 [skeleton/images](skeleton/images)에 있다.
