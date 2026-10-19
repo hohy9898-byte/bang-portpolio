@@ -388,3 +388,11 @@ nav a:hover {
     padding-top: 3.5rem;
   }
 }
+
+.project-card code {
+  font-size: 0.85em;
+  padding: 0.1rem 0.35rem;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+}

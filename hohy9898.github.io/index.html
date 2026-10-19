@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="프론트엔드 개발자 지망생 방호준의 포트폴리오입니다. SSAFY 프로젝트와 기술 스택, 연락처를 확인할 수 있습니다."
+      content="백엔드 개발자 지망생 방호준의 포트폴리오입니다. Python·FastAPI 기반 API와 프론트엔드까지 만들어 본 프로젝트를 소개합니다."
     />
     <meta name="theme-color" content="#0b1020" />
     <title>방호준 | Portfolio</title>
@@ -28,14 +28,15 @@
       <section class="hero">
         <div class="container hero-inner">
           <div class="hero-copy">
-            <p class="eyebrow">Frontend Developer</p>
+            <p class="eyebrow">Backend Developer</p>
             <h1>
               안녕하세요,<br />
               <span>방호준</span>입니다.
             </h1>
             <p class="lead">
-              보이는 화면에서 끝나지 않고 실제로 쓰기 편한 웹을 만드는 데 관심이 있습니다.
-              SSAFY에서 Vue로 지역 커뮤니티를 만들고, LLM을 서비스에 붙이는 작업을 해 왔습니다.
+              Python으로 개발을 시작해 API와 서버를 만드는 백엔드 개발자를 목표로 하고 있습니다.
+              화면을 직접 만들어 보며 API를 쓰는 쪽의 입장도 알기 때문에,
+              프론트엔드가 쓰기 편한 API를 설계하려고 합니다.
             </p>
 
             <div class="cta-group" aria-label="주요 액션">
@@ -44,11 +45,11 @@
             </div>
 
             <ul class="tag-list" aria-label="기술 태그">
-              <li>JavaScript</li>
-              <li>Vue 3</li>
               <li>Python</li>
-              <li>OpenAI API</li>
+              <li>FastAPI</li>
               <li>LangChain</li>
+              <li>Vue 3</li>
+              <li>JavaScript</li>
             </ul>
           </div>
 
@@ -56,10 +57,11 @@
             <div class="profile-badge">SSAFY 16기</div>
             <div class="avatar" aria-hidden="true">방</div>
             <h2>방호준</h2>
-            <p>Frontend Developer</p>
+            <p>Backend Developer</p>
             <ul>
-              <li>Vue 3 기반 SPA 개발</li>
-              <li>LLM 챗봇 · RAG 구현</li>
+              <li>Python · FastAPI REST API</li>
+              <li>LLM 에이전트 · RAG 검색</li>
+              <li>Vue 3 화면까지 직접 연동</li>
               <li>팀 프로젝트 조장 경험</li>
             </ul>
           </aside>
@@ -75,14 +77,15 @@
 
           <div class="content-box">
             <p>
-              SSAFY에서 웹 개발을 공부하고 있습니다. 팀 프로젝트
-              「부산, 축제 어디까지 가는 거예요?」에서 조장을 맡아 일정과 기능 범위를 조율하고,
-              커뮤니티 게시판 전체를 Vue 3로 구현했습니다.
+              SSAFY에서 Python으로 개발을 시작했고, 데이터를 모으고 가공해 API로 내보내는 일에
+              가장 큰 흥미를 느껴 백엔드 개발자를 목표로 하고 있습니다. FastAPI로 도서 검색 챗봇
+              API를 만들면서, 평가셋을 직접 만들어 답변 정확도를 72%에서 97%까지 끌어올렸습니다.
             </p>
             <p>
-              기능을 만드는 것에서 끝내지 않고, 배포한 뒤에 발견한 문제도 직접 고칩니다.
-              브라우저에 노출되던 API 키를 서버리스 함수로 옮기고, 챗봇 프롬프트에 들어가는
-              데이터를 줄여 응답 속도를 개선한 경험이 있습니다.
+              프론트엔드도 직접 만들어 봤습니다. 챗봇 API의 응답에 화면용 도서 카드 데이터를 함께
+              담도록 설계하고 그 API를 쓰는 위젯까지 연동했고, 팀 프로젝트에서는 Vue로 커뮤니티
+              게시판을 만들었습니다. 화면과 서버를 모두 다뤄 본 경험으로, 클라이언트가 쓰기 편하고
+              안전한 API를 만드는 백엔드 개발자가 되려고 합니다.
             </p>
           </div>
         </div>
@@ -97,20 +100,20 @@
 
           <div class="skills-grid">
             <article class="skill-card">
+              <h3>Backend</h3>
+              <p>Python, FastAPI, Pydantic, REST API 설계, Netlify Functions</p>
+            </article>
+            <article class="skill-card">
+              <h3>AI · Data</h3>
+              <p>LangChain · LangGraph 에이전트, ChromaDB, BM25 하이브리드 검색, OpenAI API, Ollama</p>
+            </article>
+            <article class="skill-card">
               <h3>Frontend</h3>
               <p>HTML, CSS, JavaScript, Vue 3 (Composition API), Vue Router, Vite</p>
             </article>
             <article class="skill-card">
-              <h3>AI · Backend</h3>
-              <p>Python, OpenAI API, LangChain, Ollama, ChromaDB, Netlify Functions</p>
-            </article>
-            <article class="skill-card">
-              <h3>Tools</h3>
-              <p>Git, GitHub, GitLab, VS Code를 활용한 협업과 버전 관리</p>
-            </article>
-            <article class="skill-card">
-              <h3>Deployment</h3>
-              <p>Netlify, GitHub Pages를 통한 웹사이트 배포</p>
+              <h3>Tools · Deploy</h3>
+              <p>Git, GitHub, GitLab, Netlify, GitHub Pages</p>
             </article>
           </div>
         </div>
@@ -125,7 +128,31 @@
 
           <div class="project-grid">
             <article class="project-card featured">
-              <span class="project-tag">Team · SSAFY</span>
+              <span class="project-tag">Backend · SSAFY</span>
+              <h3>도서 검색 RAG 챗봇 API</h3>
+              <p class="project-meta">SSAFY 관통 프로젝트 3회차 · 도서 분석 서비스 ThRead의 챗봇 서버와 위젯</p>
+              <p>
+                보유 도서 100권에 대해 조건 검색과 주제 추천을 해 주는 챗봇 API입니다.
+                LangChain 에이전트가 질문에 따라 정확한 조건 검색 도구와 하이브리드 검색 도구를
+                골라 쓰고, 로컬 모델(Qwen3 4B)로 동작합니다.
+              </p>
+              <ul>
+                <li>FastAPI + Pydantic으로 <code>POST /api/v1/chat</code> 설계: 세션별 대화 유지, 답변에 나온 도서를 카드용 데이터로 함께 반환</li>
+                <li>벡터 검색과 bigram BM25를 RRF로 합친 하이브리드 검색 구현</li>
+                <li>29문항 평가셋과 채점 스크립트를 직접 만들어 개선 효과를 측정, 통과율 72% → 97%</li>
+                <li>보유 도서에 없는 제목(지어낸 답변)을 서버 로그로 감지</li>
+                <li>API를 호출하는 챗봇 위젯(JavaScript)까지 직접 연동</li>
+              </ul>
+              <ul class="project-stack" aria-label="사용 기술">
+                <li>Python</li><li>FastAPI</li><li>LangChain</li><li>LangGraph</li><li>ChromaDB</li><li>Ollama</li>
+              </ul>
+              <div class="project-links">
+                <a href="https://github.com/hohy9898-byte/bang-portpolio/tree/main/03-pjt/261015-local-model" target="_blank" rel="noreferrer">Code</a>
+              </div>
+            </article>
+
+            <article class="project-card featured">
+              <span class="project-tag">Full-stack · Team</span>
               <h3>부산, 축제 어디까지 가는 거예요?</h3>
               <p class="project-meta">팀 윈도우 98 (3명) · 조장, 커뮤니티 게시판 담당</p>
               <p>
@@ -133,12 +160,12 @@
                 답하는 챗봇과, 추천·인기글·태그·공유 기능을 갖춘 게시판을 한 화면에 모았습니다.
               </p>
               <ul>
-                <li>게시판 전체 구현: 작성·수정·삭제(비밀번호 확인), 카테고리·탭 필터, 검색, 페이지네이션</li>
-                <li>추천/비추천 기준으로 인기글·분리수거 글 자동 분류, 북마크, 해시태그, 공유 링크</li>
-                <li>브라우저에 노출되던 OpenAI 키를 Netlify Function으로 옮겨 서버에서만 사용하도록 수정</li>
+                <li>브라우저에서 OpenAI를 직접 호출해 API 키가 노출되던 구조를 Netlify Function으로 옮김: 서버에서 데이터 컨텍스트를 만들고 입력을 검증해, 함수가 범용 프록시로 악용되지 않도록 설계</li>
+                <li>Vue 3로 게시판 전체 구현: 작성·수정·삭제(비밀번호 확인), 추천 기준 인기글 자동 분류, 검색, 페이지네이션</li>
+                <li>조장으로 일정과 기능 범위 조율</li>
               </ul>
               <ul class="project-stack" aria-label="사용 기술">
-                <li>Vue 3</li><li>Vite</li><li>OpenAI</li><li>TourAPI</li><li>Netlify</li>
+                <li>Netlify Functions</li><li>OpenAI</li><li>TourAPI</li><li>Vue 3</li><li>Vite</li>
               </ul>
               <div class="project-links">
                 <a href="https://site-make.netlify.app/" target="_blank" rel="noreferrer">Demo</a>
@@ -147,29 +174,15 @@
             </article>
 
             <article class="project-card">
-              <span class="project-tag">SSAFY</span>
-              <h3>ThRead</h3>
-              <p>
-                AI 기반 도서 분석·창작 지원 웹입니다. 로컬 모델(Qwen3)과 ChromaDB로
-                도서 100권의 정보를 검색해 답하는 RAG 챗봇을 함께 만들었습니다.
-              </p>
-              <ul class="project-stack" aria-label="사용 기술">
-                <li>HTML/CSS</li><li>LangChain</li><li>Ollama</li><li>ChromaDB</li>
-              </ul>
-              <div class="project-links">
-                <a href="https://github.com/hohy9898-byte/bang-portpolio/tree/main/03-pjt" target="_blank" rel="noreferrer">Code</a>
-              </div>
-            </article>
-
-            <article class="project-card">
-              <span class="project-tag">SSAFY</span>
+              <span class="project-tag">Python · SSAFY</span>
               <h3>도서 데이터 수집과 AI 분류</h3>
               <p>
-                도서 API로 주제별 데이터를 모으고, 생성형 AI로 분류한 뒤
-                요약을 음성(TTS)으로 변환했습니다.
+                알라딘 API에서 주제별 도서를 페이지네이션으로 수집해 통계를 내고, 생성형 AI로 분류한 뒤
+                요약을 음성(TTS)으로 변환했습니다. 응답 토큰이 바닥나 결과가 비던 문제를 요청 형식을
+                바꿔 해결했습니다.
               </p>
               <ul class="project-stack" aria-label="사용 기술">
-                <li>Python</li><li>OpenAI</li><li>gTTS</li>
+                <li>Python</li><li>REST API</li><li>OpenAI</li><li>gTTS</li>
               </ul>
               <div class="project-links">
                 <a href="https://github.com/hohy9898-byte/bang-portpolio/tree/main/02-pjt" target="_blank" rel="noreferrer">Code</a>
@@ -177,23 +190,15 @@
             </article>
 
             <article class="project-card">
-              <span class="project-tag">Personal</span>
-              <h3>골목슐랭</h3>
-              <p>가벼운 지갑으로 즐기는 골목길 미식 여행을 소개하는 페이지입니다.</p>
-              <ul class="project-stack" aria-label="사용 기술">
-                <li>HTML</li><li>Tailwind CSS</li>
-              </ul>
-              <div class="project-links">
-                <a href="https://github.com/hohy9898-byte/i-am" target="_blank" rel="noreferrer">Code</a>
-              </div>
-            </article>
-
-            <article class="project-card">
               <span class="project-tag">Archive</span>
               <h3>SSAFY 프로젝트 모음</h3>
-              <p>관통 프로젝트 1~3회차와 팀 프로젝트 코드를 한곳에 정리한 저장소입니다.</p>
+              <p>
+                Python 기초(01)부터 API 수집(02), 웹·챗봇(03), 팀 프로젝트까지 SSAFY에서 진행한
+                프로젝트를 한곳에 정리한 저장소입니다. 개인 작업인 골목슐랭 소개 페이지도 있습니다.
+              </p>
               <div class="project-links">
                 <a href="https://github.com/hohy9898-byte/bang-portpolio" target="_blank" rel="noreferrer">Repository</a>
+                <a href="https://github.com/hohy9898-byte/i-am" target="_blank" rel="noreferrer">골목슐랭</a>
               </div>
             </article>
           </div>
