@@ -94,13 +94,13 @@ nav a:hover {
   font-size: 0.76rem;
 }
 
-.hero-text h1 {
+.hero-copy h1 {
   font-size: clamp(2.5rem, 5vw, 4.2rem);
   line-height: 1.08;
   margin: 0 0 1rem;
 }
 
-.hero-text h1 span {
+.hero-copy h1 span {
   color: var(--primary);
 }
 
@@ -144,7 +144,7 @@ nav a:hover {
 }
 
 .profile-card,
-.about-box,
+.content-box,
 .skill-card,
 .project-card,
 .contact-box {
@@ -212,27 +212,27 @@ nav a:hover {
   background: rgba(255, 255, 255, 0.02);
 }
 
-.section-title {
+.section-heading {
   margin-bottom: 2rem;
 }
 
-.section-title h2 {
+.section-heading h2 {
   margin: 0;
   font-size: clamp(1.8rem, 3vw, 2.6rem);
 }
 
-.about-box,
+.content-box,
 .contact-box {
   padding: 2rem;
 }
 
-.about-box p {
+.content-box p {
   margin: 0 0 1rem;
   color: var(--muted);
   font-size: 1.02rem;
 }
 
-.about-box p:last-child {
+.content-box p:last-child {
   margin-bottom: 0;
 }
 
@@ -261,7 +261,79 @@ nav a:hover {
 }
 
 .project-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card.featured {
+  grid-column: 1 / -1;
+  border-color: rgba(124, 156, 255, 0.35);
+}
+
+.project-meta {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.project-stack {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+
+.project-card .project-stack {
+  padding-left: 0;
+}
+
+.project-stack li {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
+}
+
+.project-links a {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.project-links a:hover,
+.contact-list a:hover {
+  text-decoration: underline;
+}
+
+.tag-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 2rem 0 0;
+}
+
+.tag-list li {
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--muted);
+  font-size: 0.85rem;
 }
 
 .project-tag {
@@ -274,6 +346,7 @@ nav a:hover {
   font-weight: 700;
   padding: 0.35rem 0.65rem;
   margin-bottom: 0.75rem;
+  align-self: flex-start;
 }
 
 .project-card ul {
