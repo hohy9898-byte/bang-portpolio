@@ -1,0 +1,138 @@
+/* ===== AI 도서 추천 챗봇 위젯 ===== */
+.chatbot-fab {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1040;
+  width: 56px;
+  height: 56px;
+  border: none;
+  border-radius: 50%;
+  background-color: #fe4a51;
+  color: #fff;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.chatbot-fab:hover {
+  background-color: #e43e45;
+}
+
+.chatbot {
+  color: #333;
+}
+.chatbot .offcanvas-title {
+  font-family: "GmarketSansTTFMedium";
+  font-weight: 700;
+}
+.chatbot .offcanvas-title .read {
+  color: #fe4a51;
+}
+
+.chatbot-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background-color: #f7f7f8;
+}
+
+.chatbot-msg {
+  max-width: 85%;
+  padding: 0.6rem 0.9rem;
+  border-radius: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  word-break: break-word;
+}
+.chatbot-msg p:last-child,
+.chatbot-msg ul:last-child,
+.chatbot-msg ol:last-child {
+  margin-bottom: 0;
+}
+.chatbot-msg ul,
+.chatbot-msg ol {
+  padding-left: 1.2rem;
+}
+.chatbot-msg.user {
+  align-self: flex-end;
+  background-color: #fe4a51;
+  color: #fff;
+  border-bottom-right-radius: 0.25rem;
+}
+.chatbot-msg.bot {
+  align-self: flex-start;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  border-bottom-left-radius: 0.25rem;
+}
+.chatbot-msg.error {
+  color: #b02a37;
+}
+
+/* 답변에 나온 도서 카드 (가로 스크롤) */
+.chatbot-books {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  flex-shrink: 0;
+}
+.chatbot-book {
+  flex: 0 0 110px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  color: #333;
+  text-decoration: none;
+}
+a.chatbot-book:hover {
+  border-color: #fe4a51;
+}
+.chatbot-book img,
+.chatbot-book-placeholder {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+.chatbot-book-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f1f1f3;
+  font-size: 2rem;
+}
+.chatbot-book-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.4rem 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.3;
+}
+.chatbot-book-info strong {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.chatbot-book-info span {
+  color: #888;
+}
+
+.chatbot-suggestions .btn {
+  font-size: 0.8rem;
+}
+
+.chatbot .btn-send {
+  flex-shrink: 0;
+  white-space: nowrap;
+  background-color: #fe4a51;
+  color: #fff;
+}
+.chatbot .btn-send:hover,
+.chatbot .btn-send:disabled {
+  background-color: #e43e45;
+  color: #fff;
+}

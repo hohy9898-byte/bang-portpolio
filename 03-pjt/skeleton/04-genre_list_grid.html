@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ThRead - Genre (CSS Grid)</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      /* 폰트 정의 */
+      @font-face {
+        font-family: "SBAggro_L";
+        src: url("assets/fonts/SBAggroOTF_L.ttf") format("truetype");
+      }
+      @font-face {
+        font-family: "GmarketSansTTFMedium";
+        src: url("assets/fonts/GmarketSansTTFMedium.ttf") format("truetype");
+      }
+
+      /* 섹션: 폭 80% 중앙 정렬 */
+      .genre-books {
+        width: 80%;
+        margin: 0 auto;
+      }
+      .genre-books .section-title {
+        font-family: "GmarketSansTTFMedium";
+        font-size: 1.4rem;
+        font-weight: 700;
+      }
+
+      /* F310: CSS Grid 컨테이너 - 8열 x 4행 */
+      .genre-grid {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        grid-auto-rows: 120px;
+        gap: 0.75rem;
+      }
+
+      /* 각 아이템의 위치/크기를 grid-column, grid-row로 지정 */
+      .g-travel {
+        grid-column: 1 / span 4;
+        grid-row: 1 / span 2;
+      }
+      .g-health {
+        grid-column: 5 / span 2;
+        grid-row: 1 / span 3;
+      }
+      .g-art {
+        grid-column: 7 / span 2;
+        grid-row: 1;
+      }
+      .g-history {
+        grid-column: 7 / span 2;
+        grid-row: 2;
+      }
+      .g-romance {
+        grid-column: 1 / span 2;
+        grid-row: 3 / span 2;
+      }
+      .g-philosophy {
+        grid-column: 3 / span 2;
+        grid-row: 3 / span 2;
+      }
+      .g-baby {
+        grid-column: 7;
+        grid-row: 3;
+      }
+      .g-youth {
+        grid-column: 8;
+        grid-row: 3;
+      }
+      .g-science {
+        grid-column: 5 / span 2;
+        grid-row: 4;
+      }
+      .g-economy {
+        grid-column: 7 / span 2;
+        grid-row: 4;
+      }
+
+      /* 이미지는 셀 크기에 맞게 채움 */
+      .genre-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s;
+      }
+      .genre-item:hover img {
+        transform: scale(1.05);
+      }
+      /* 좌측 하단 장르명 오버레이 */
+      .genre-name {
+        position: absolute;
+        left: 0.75rem;
+        bottom: 0.5rem;
+        color: #fff;
+        font-family: "SBAggro_L";
+        text-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+      }
+
+      /* 태블릿(576px ~ 991.98px): 4열 x 4행으로 재배치 */
+      @media (min-width: 576px) and (max-width: 991.98px) {
+        .genre-grid {
+          grid-template-columns: repeat(4, 1fr);
+          grid-auto-rows: 150px;
+        }
+        .g-travel {
+          grid-column: 1 / span 2;
+          grid-row: 1 / span 2;
+        }
+        .g-health {
+          grid-column: 3;
+          grid-row: 1 / span 2;
+        }
+        .g-art {
+          grid-column: 4;
+          grid-row: 1;
+        }
+        .g-history {
+          grid-column: 4;
+          grid-row: 2;
+        }
+        .g-romance {
+          grid-column: 1;
+          grid-row: 3 / span 2;
+        }
+        .g-philosophy {
+          grid-column: 2;
+          grid-row: 3;
+        }
+        .g-baby {
+          grid-column: 3;
+          grid-row: 3;
+        }
+        .g-youth {
+          grid-column: 4;
+          grid-row: 3;
+        }
+        .g-science {
+          grid-column: 2 / span 2;
+          grid-row: 4;
+        }
+        .g-economy {
+          grid-column: 4;
+          grid-row: 4;
+        }
+      }
+
+      /* 모바일: 1열, 각 아이템 동일 크기 */
+      @media (max-width: 575.98px) {
+        .genre-grid {
+          grid-template-columns: 1fr;
+          grid-auto-rows: 320px;
+        }
+        .genre-grid .genre-item {
+          grid-column: auto;
+          grid-row: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="genre-books py-5">
+      <h3 class="section-title text-center mb-4">장르별 도서 목록</h3>
+      <div class="genre-grid">
+        <div class="genre-item g-travel position-relative rounded overflow-hidden">
+          <img src="assets/genre/travel.jpg" alt="여행" />
+          <span class="genre-name">여행</span>
+        </div>
+        <div class="genre-item g-health position-relative rounded overflow-hidden">
+          <img src="assets/genre/health.jpg" alt="건강" />
+          <span class="genre-name">건강</span>
+        </div>
+        <div class="genre-item g-art position-relative rounded overflow-hidden">
+          <img src="assets/genre/art.jpg" alt="예술" />
+          <span class="genre-name">예술</span>
+        </div>
+        <div class="genre-item g-history position-relative rounded overflow-hidden">
+          <img src="assets/genre/history.jpg" alt="역사" />
+          <span class="genre-name">역사</span>
+        </div>
+        <div class="genre-item g-economy position-relative rounded overflow-hidden">
+          <img src="assets/genre/economy.jpg" alt="경제" />
+          <span class="genre-name">경제</span>
+        </div>
+        <div class="genre-item g-philosophy position-relative rounded overflow-hidden">
+          <img src="assets/genre/philosophy.jpg" alt="철학" />
+          <span class="genre-name">철학</span>
+        </div>
+        <div class="genre-item g-science position-relative rounded overflow-hidden">
+          <img src="assets/genre/natural_science.jpg" alt="자연과학" />
+          <span class="genre-name">자연과학</span>
+        </div>
+        <div class="genre-item g-baby position-relative rounded overflow-hidden">
+          <img src="assets/genre/baby.jpg" alt="육아" />
+          <span class="genre-name">육아</span>
+        </div>
+        <div class="genre-item g-youth position-relative rounded overflow-hidden">
+          <img src="assets/genre/youth.jpg" alt="청소년" />
+          <span class="genre-name">청소년</span>
+        </div>
+        <div class="genre-item g-romance position-relative rounded overflow-hidden">
+          <img src="assets/genre/romance.jpg" alt="로맨스" />
+          <span class="genre-name">로맨스</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
