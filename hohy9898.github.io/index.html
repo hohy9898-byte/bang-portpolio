@@ -9,18 +9,62 @@
     />
     <meta name="theme-color" content="#0b1020" />
     <title>방호준 | Portfolio</title>
+
+    <!-- 링크 공유 미리보기 (카카오톡, 슬랙 등) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:url" content="https://hohy9898-byte.github.io/" />
+    <meta property="og:title" content="방호준 | Backend Developer" />
+    <meta property="og:description" content="Python·FastAPI로 API를 만드는 백엔드 개발자 지망생. 도서 검색 RAG 챗봇 API(정확도 72% → 97%) 등 프로젝트를 소개합니다." />
+    <meta property="og:image" content="https://hohy9898-byte.github.io/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="방호준 Backend Developer 포트폴리오" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+    />
+    <script>
+      // 첫 화면이 깜빡이지 않도록 CSS보다 먼저 테마를 정한다.
+      // 저장된 선택이 있으면 그것을, 없으면 시스템 설정을 따른다.
+      (function () {
+        var saved = null;
+        try {
+          saved = localStorage.getItem("theme");
+        } catch (e) {}
+        var prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+        document.documentElement.dataset.theme = saved || (prefersLight ? "light" : "dark");
+      })();
+    </script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="site-header">
       <div class="container nav">
         <a href="#top" class="logo" aria-label="방호준 홈">방호준</a>
-        <nav aria-label="메인 메뉴">
-          <a href="#about">소개</a>
-          <a href="#skills">기술</a>
-          <a href="#projects">프로젝트</a>
-          <a href="#contact">연락처</a>
-        </nav>
+        <div class="nav-actions">
+          <nav aria-label="메인 메뉴">
+            <a href="#about">소개</a>
+            <a href="#skills">기술</a>
+            <a href="#projects">프로젝트</a>
+            <a href="#contact">연락처</a>
+          </nav>
+          <button type="button" class="theme-toggle" id="theme-toggle" aria-label="라이트 모드로 전환">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </button>
+        </div>
       </div>
     </header>
 
@@ -136,13 +180,117 @@
                 LangChain 에이전트가 질문에 따라 정확한 조건 검색 도구와 하이브리드 검색 도구를
                 골라 쓰고, 로컬 모델(Qwen3 4B)로 동작합니다.
               </p>
+              <figure class="diagram">
+                <div class="diagram-scroll">
+                  <svg viewBox="0 0 1040 420" role="img" aria-labelledby="rag-diagram-title rag-diagram-desc">
+                    <title id="rag-diagram-title">도서 검색 RAG 챗봇 API 구조</title>
+                    <desc id="rag-diagram-desc">
+                      챗봇 위젯이 FastAPI 서버로 질문을 보내면, 서버는 요청을 검증하고 세션별 대화 기록을 불러와
+                      LangChain 에이전트에 넘긴다. 에이전트는 질문에 따라 조건 검색 툴(filter_books) 또는
+                      주제 검색 툴(search_books_info)을 고른다. 주제 검색은 Chroma 벡터 검색과 bigram BM25 결과를
+                      RRF로 합쳐 상위 5권을 돌려준다. 서버는 답변에 나온 도서를 카드 데이터로 함께 응답하고,
+                      보유하지 않은 제목은 경고 로그를 남긴다.
+                    </desc>
+                    <defs>
+                      <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                        <path class="d-arrowhead" d="M0 0 L10 5 L0 10 z" />
+                      </marker>
+                    </defs>
+
+                    <!-- 클라이언트 -->
+                    <rect class="d-box" x="20" y="160" width="120" height="70" rx="10" />
+                    <text class="d-title" x="80" y="192">챗봇 위젯</text>
+                    <text class="d-sub" x="80" y="213">JavaScript</text>
+
+                    <path class="d-line" d="M140 180 H185 V90 H233" marker-end="url(#arrow)" />
+                    <path class="d-line" d="M233 340 H185 V215 H140" marker-end="url(#arrow)" />
+
+                    <!-- FastAPI 서버 -->
+                    <rect class="d-group" x="220" y="20" width="210" height="380" rx="14" />
+                    <text class="d-group-title" x="325" y="45">FastAPI · POST /api/v1/chat</text>
+
+                    <rect class="d-box" x="235" y="60" width="180" height="60" rx="8" />
+                    <text class="d-title" x="325" y="86">① 요청 검증</text>
+                    <text class="d-sub" x="325" y="106">Pydantic 모델</text>
+
+                    <path class="d-line" d="M325 120 V138" marker-end="url(#arrow)" />
+
+                    <rect class="d-box" x="235" y="140" width="180" height="60" rx="8" />
+                    <text class="d-title" x="325" y="166">② 대화 기록 불러오기</text>
+                    <text class="d-sub" x="325" y="186">session_id별 저장</text>
+
+                    <rect class="d-box" x="235" y="300" width="180" height="80" rx="8" />
+                    <text class="d-title" x="325" y="326">④ 응답 만들기</text>
+                    <text class="d-sub" x="325" y="347">답변 속 도서 → 카드 데이터</text>
+                    <text class="d-sub" x="325" y="366">미보유 제목 → 경고 로그</text>
+
+                    <!-- 에이전트 -->
+                    <path class="d-line" d="M415 170 H468" marker-end="url(#arrow)" />
+                    <rect class="d-box d-accent" x="470" y="130" width="170" height="110" rx="10" />
+                    <text class="d-title" x="555" y="166">③ 에이전트</text>
+                    <text class="d-sub" x="555" y="188">LangChain · Qwen3 4B</text>
+                    <text class="d-sub" x="555" y="208">질문을 보고 툴 선택</text>
+                    <path class="d-line" d="M555 240 V340 H417" marker-end="url(#arrow)" />
+
+                    <!-- 툴 -->
+                    <path class="d-line" d="M640 160 H660 V75 H678" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                    <path class="d-line" d="M640 210 H660 V275 H678" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+
+                    <rect class="d-box" x="680" y="30" width="340" height="90" rx="10" />
+                    <text class="d-title" x="850" y="62">filter_books · 조건 검색</text>
+                    <text class="d-sub" x="850" y="84">분류 · 저자 · 출간연도 · 가격 · 순위</text>
+                    <text class="d-sub" x="850" y="104">보유 도서 100권 목록에서 필터</text>
+
+                    <rect class="d-group" x="680" y="150" width="340" height="250" rx="14" />
+                    <text class="d-group-title" x="850" y="177">search_books_info · 주제 검색</text>
+
+                    <rect class="d-box" x="695" y="195" width="155" height="80" rx="8" />
+                    <text class="d-title" x="772" y="222">벡터 검색</text>
+                    <text class="d-sub" x="772" y="242">Chroma</text>
+                    <text class="d-sub" x="772" y="260">Qwen3-Embedding</text>
+
+                    <rect class="d-box" x="865" y="195" width="140" height="80" rx="8" />
+                    <text class="d-title" x="935" y="222">키워드 검색</text>
+                    <text class="d-sub" x="935" y="242">글자 2개 단위</text>
+                    <text class="d-sub" x="935" y="260">BM25</text>
+
+                    <path class="d-line" d="M772 275 V303" marker-end="url(#arrow)" />
+                    <path class="d-line" d="M935 275 V303" marker-end="url(#arrow)" />
+
+                    <rect class="d-box d-accent" x="695" y="305" width="310" height="55" rx="8" />
+                    <text class="d-title" x="850" y="329">RRF로 순위 결합</text>
+                    <text class="d-sub" x="850" y="348">점수 대신 순위로 합쳐 상위 5권</text>
+                  </svg>
+                </div>
+                <figcaption>
+                  ① 요청을 검증하고 ② 세션의 대화 기록을 불러와 ③ 에이전트가 질문에 맞는 툴을 고릅니다.
+                  ④ 답변에 나온 도서는 화면용 카드 데이터로 함께 돌려주고, 보유하지 않은 제목은 경고 로그로 남깁니다.
+                </figcaption>
+              </figure>
               <ul>
                 <li>FastAPI + Pydantic으로 <code>POST /api/v1/chat</code> 설계: 세션별 대화 유지, 답변에 나온 도서를 카드용 데이터로 함께 반환</li>
                 <li>벡터 검색과 bigram BM25를 RRF로 합친 하이브리드 검색 구현</li>
-                <li>29문항 평가셋과 채점 스크립트를 직접 만들어 개선 효과를 측정, 통과율 72% → 97%</li>
+                <li>29문항 평가셋과 채점 스크립트를 직접 만들어 변경할 때마다 효과를 측정</li>
                 <li>보유 도서에 없는 제목(지어낸 답변)을 서버 로그로 감지</li>
                 <li>API를 호출하는 챗봇 위젯(JavaScript)까지 직접 연동</li>
               </ul>
+              <section class="case" aria-label="트러블슈팅: 답변 정확도 개선">
+                <h4>트러블슈팅 · 답변 정확도 72% → 97%</h4>
+                <dl>
+                  <dt>문제</dt>
+                  <dd>보유 도서로 답할 수 있는 질문에도 틀린 답이 나왔습니다. 29문항을 3회씩 채점한 결과 통과율은 72%(63/87)였습니다.</dd>
+                  <dt>원인</dt>
+                  <dd>
+                    처음에는 검색 품질 문제라고 보고 하이브리드 검색을 붙였지만 64%로 차이가 없었습니다.
+                    실패한 답변을 다시 보니, 4B 모델이 툴을 아예 부르지 않고 답하거나
+                    "가장 비싼", "넘는" 같은 표현을 검색 파라미터로 잘못 옮기고 있었습니다.
+                  </dd>
+                  <dt>해결</dt>
+                  <dd>도서 질문은 반드시 툴을 먼저 부르도록 규칙을 넣고, 검색 결과 수를 10 → 30으로 늘리고, 저자 이름 오타를 허용했습니다. 모델이 헷갈리던 정렬·가격 파라미터 설명도 구체적으로 고쳤습니다.</dd>
+                  <dt>결과</dt>
+                  <dd>통과율이 72% → 90% → <strong>97%(84/87)</strong>로 올랐습니다. 작은 모델은 검색보다 툴 호출 판단에서 더 많이 틀린다는 것을, 추측이 아니라 측정으로 확인했습니다.</dd>
+                </dl>
+              </section>
               <ul class="project-stack" aria-label="사용 기술">
                 <li>Python</li><li>FastAPI</li><li>LangChain</li><li>LangGraph</li><li>ChromaDB</li><li>Ollama</li>
               </ul>
@@ -160,10 +308,27 @@
                 답하는 챗봇과, 추천·인기글·태그·공유 기능을 갖춘 게시판을 한 화면에 모았습니다.
               </p>
               <ul>
-                <li>브라우저에서 OpenAI를 직접 호출해 API 키가 노출되던 구조를 Netlify Function으로 옮김: 서버에서 데이터 컨텍스트를 만들고 입력을 검증해, 함수가 범용 프록시로 악용되지 않도록 설계</li>
+                <li>브라우저에 노출되던 OpenAI API 키를 Netlify Function(서버리스)으로 옮김</li>
                 <li>Vue 3로 게시판 전체 구현: 작성·수정·삭제(비밀번호 확인), 추천 기준 인기글 자동 분류, 검색, 페이지네이션</li>
                 <li>조장으로 일정과 기능 범위 조율</li>
               </ul>
+              <section class="case" aria-label="트러블슈팅: API 키 노출">
+                <h4>트러블슈팅 · 배포된 사이트에서 API 키 노출</h4>
+                <dl>
+                  <dt>문제</dt>
+                  <dd>배포된 사이트의 JS 파일을 열면 OpenAI API 키가 그대로 보였습니다.</dd>
+                  <dt>원인</dt>
+                  <dd>브라우저에서 OpenAI를 직접 호출하는 구조였고, <code>VITE_</code>로 시작하는 환경 변수는 빌드할 때 JS 파일에 그대로 들어갑니다.</dd>
+                  <dt>해결</dt>
+                  <dd>
+                    키를 폐기하고 OpenAI 호출을 Netlify Function으로 옮겼습니다. 프롬프트를 통째로 받으면
+                    누구나 함수를 무료 OpenAI 프록시로 쓸 수 있으므로, 브라우저는 질문만 보내고
+                    부산 데이터를 붙여 프롬프트를 만드는 일은 서버가 하도록 했습니다. 질문 길이는 500자로 제한했습니다.
+                  </dd>
+                  <dt>결과</dt>
+                  <dd>키는 서버 환경 변수에만 남고, 함수는 이 서비스의 질문에만 답합니다. 비밀 값은 서버에 두고, API는 "다른 용도로 쓰일 수 있는가"까지 따져 설계해야 한다는 것을 배웠습니다.</dd>
+                </dl>
+              </section>
               <ul class="project-stack" aria-label="사용 기술">
                 <li>Netlify Functions</li><li>OpenAI</li><li>TourAPI</li><li>Vue 3</li><li>Vite</li>
               </ul>
@@ -228,5 +393,39 @@
         <p>© 2026 방호준</p>
       </div>
     </footer>
+
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var button = document.getElementById("theme-toggle");
+        var themeColor = document.querySelector('meta[name="theme-color"]');
+        var media = window.matchMedia("(prefers-color-scheme: light)");
+
+        function apply(theme) {
+          root.dataset.theme = theme;
+          themeColor.setAttribute("content", theme === "light" ? "#f6f8fc" : "#0b1020");
+          button.setAttribute("aria-label", theme === "light" ? "다크 모드로 전환" : "라이트 모드로 전환");
+        }
+
+        apply(root.dataset.theme);
+
+        button.addEventListener("click", function () {
+          var next = root.dataset.theme === "light" ? "dark" : "light";
+          apply(next);
+          try {
+            localStorage.setItem("theme", next);
+          } catch (e) {}
+        });
+
+        // 사용자가 직접 고른 적이 없으면 시스템 설정 변경을 따라간다.
+        media.addEventListener("change", function (event) {
+          var saved = null;
+          try {
+            saved = localStorage.getItem("theme");
+          } catch (e) {}
+          if (!saved) apply(event.matches ? "light" : "dark");
+        });
+      })();
+    </script>
   </body>
 </html>

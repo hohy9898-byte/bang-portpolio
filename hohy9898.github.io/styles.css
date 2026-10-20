@@ -1,13 +1,47 @@
+/* 다크 테마(기본값) */
 :root {
+  color-scheme: dark;
   --bg: #0b1020;
+  --bg-end: #101827;
   --bg-soft: #121b2f;
-  --card: #172235;
+  --card: rgba(23, 34, 53, 0.9);
+  --header-bg: rgba(11, 16, 32, 0.72);
   --primary: #7c9cff;
   --primary-strong: #5b7cff;
+  --primary-glow: rgba(92, 124, 255, 0.35);
+  --accent-soft: rgba(124, 156, 255, 0.12);
+  --accent-border: rgba(124, 156, 255, 0.3);
   --text: #edf2ff;
   --muted: #bac7e6;
   --line: rgba(255, 255, 255, 0.08);
+  --tint: rgba(255, 255, 255, 0.03);
+  --code-bg: rgba(255, 255, 255, 0.06);
   --shadow: rgba(15, 23, 42, 0.35);
+  --avatar-end: #9bd7ff;
+  --avatar-text: #081120;
+}
+
+/* 라이트 테마 */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f6f8fc;
+  --bg-end: #eaeff8;
+  --bg-soft: #ffffff;
+  --card: rgba(255, 255, 255, 0.92);
+  --header-bg: rgba(246, 248, 252, 0.8);
+  --primary: #3b5bdb;
+  --primary-strong: #2f4fd0;
+  --primary-glow: rgba(59, 91, 219, 0.25);
+  --accent-soft: rgba(59, 91, 219, 0.08);
+  --accent-border: rgba(59, 91, 219, 0.28);
+  --text: #0f172a;
+  --muted: #475569;
+  --line: rgba(15, 23, 42, 0.1);
+  --tint: rgba(15, 23, 42, 0.03);
+  --code-bg: rgba(15, 23, 42, 0.06);
+  --shadow: rgba(15, 23, 42, 0.08);
+  --avatar-end: #7cc4f5;
+  --avatar-text: #ffffff;
 }
 
 * {
@@ -20,10 +54,14 @@ html {
 
 body {
   margin: 0;
-  font-family: "Inter", sans-serif;
-  background: linear-gradient(180deg, #0b1020 0%, #101827 100%);
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+    "Malgun Gothic", "Segoe UI", sans-serif;
+  word-break: keep-all;
+  background: var(--bg);
+  background-image: linear-gradient(180deg, var(--bg) 0%, var(--bg-end) 100%);
   color: var(--text);
   line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 img {
@@ -45,7 +83,7 @@ a {
   position: sticky;
   top: 0;
   backdrop-filter: blur(12px);
-  background: rgba(11, 16, 32, 0.72);
+  background: var(--header-bg);
   border-bottom: 1px solid var(--line);
   z-index: 10;
 }
@@ -72,6 +110,51 @@ nav {
 
 nav a:hover {
   color: var(--text);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--tint);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent-border);
+  transform: translateY(-1px);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* 다크일 때는 해 아이콘(라이트로 전환), 라이트일 때는 달 아이콘 */
+.theme-toggle .icon-moon,
+:root[data-theme="light"] .theme-toggle .icon-sun {
+  display: none;
+}
+
+:root[data-theme="light"] .theme-toggle .icon-moon {
+  display: block;
 }
 
 .hero {
@@ -134,12 +217,12 @@ nav a:hover {
 .btn.primary {
   background: linear-gradient(135deg, var(--primary), var(--primary-strong));
   color: #fff;
-  box-shadow: 0 12px 24px rgba(92, 124, 255, 0.35);
+  box-shadow: 0 12px 24px var(--primary-glow);
 }
 
 .btn.secondary {
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--tint);
   color: var(--text);
 }
 
@@ -148,10 +231,11 @@ nav a:hover {
 .skill-card,
 .project-card,
 .contact-box {
-  background: rgba(23, 34, 53, 0.9);
+  background: var(--card);
   border: 1px solid var(--line);
   border-radius: 20px;
   box-shadow: 0 20px 45px var(--shadow);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .profile-card {
@@ -161,9 +245,9 @@ nav a:hover {
 
 .profile-badge {
   display: inline-block;
-  background: rgba(124, 156, 255, 0.12);
+  background: var(--accent-soft);
   color: var(--primary);
-  border: 1px solid rgba(124, 156, 255, 0.3);
+  border: 1px solid var(--accent-border);
   border-radius: 999px;
   padding: 0.4rem 0.9rem;
   font-size: 0.75rem;
@@ -180,8 +264,8 @@ nav a:hover {
   place-items: center;
   font-size: 2.4rem;
   font-weight: 800;
-  background: linear-gradient(135deg, var(--primary), #9bd7ff);
-  color: #081120;
+  background: linear-gradient(135deg, var(--primary), var(--avatar-end));
+  color: var(--avatar-text);
 }
 
 .profile-card h2 {
@@ -206,10 +290,12 @@ nav a:hover {
 
 .section {
   padding: 4rem 0;
+  /* 메뉴로 이동했을 때 고정 헤더에 제목이 가려지지 않도록 */
+  scroll-margin-top: 72px;
 }
 
 .section.alt {
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--tint);
 }
 
 .section-heading {
@@ -271,7 +357,7 @@ nav a:hover {
 
 .project-card.featured {
   grid-column: 1 / -1;
-  border-color: rgba(124, 156, 255, 0.35);
+  border-color: var(--accent-border);
 }
 
 .project-meta {
@@ -331,15 +417,15 @@ nav a:hover {
   padding: 0.35rem 0.8rem;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--tint);
   color: var(--muted);
   font-size: 0.85rem;
 }
 
 .project-tag {
   display: inline-block;
-  background: rgba(124, 156, 255, 0.12);
-  border: 1px solid rgba(124, 156, 255, 0.25);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-border);
   border-radius: 999px;
   color: var(--primary);
   font-size: 0.7rem;
@@ -352,6 +438,119 @@ nav a:hover {
 .project-card ul {
   padding-left: 1.1rem;
   margin: 1rem 0 0;
+}
+
+.diagram {
+  margin: 1.25rem 0 0;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--tint);
+}
+
+/* 좁은 화면에서는 글자가 작아지지 않도록 가로 스크롤 */
+.diagram-scroll {
+  overflow-x: auto;
+}
+
+.diagram svg {
+  display: block;
+  width: 100%;
+  min-width: 720px;
+  height: auto;
+}
+
+.diagram figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.d-box {
+  fill: var(--bg-soft);
+  stroke: var(--accent-border);
+  stroke-width: 1.2;
+}
+
+.d-accent {
+  stroke: var(--primary);
+  stroke-width: 1.8;
+}
+
+.d-group {
+  fill: none;
+  stroke: var(--muted);
+  stroke-opacity: 0.45;
+  stroke-dasharray: 5 5;
+}
+
+.d-line {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1.5;
+}
+
+.d-arrowhead {
+  fill: var(--muted);
+}
+
+.diagram text {
+  text-anchor: middle;
+  font-family: inherit;
+}
+
+.d-title {
+  fill: var(--text);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.d-sub {
+  fill: var(--muted);
+  font-size: 12.5px;
+}
+
+.d-group-title {
+  fill: var(--primary);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.case {
+  margin-top: 1.25rem;
+  padding: 1.25rem 1.4rem;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--primary);
+  border-radius: 12px;
+  background: var(--tint);
+}
+
+.case h4 {
+  margin: 0 0 0.9rem;
+  font-size: 0.95rem;
+}
+
+.case dl {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 0.6rem 1rem;
+  margin: 0;
+}
+
+.case dt {
+  color: var(--primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding-top: 0.1rem;
+}
+
+.case dd {
+  margin: 0;
+  color: var(--muted);
+}
+
+.case strong {
+  color: var(--text);
 }
 
 .contact-list {
@@ -380,12 +579,42 @@ nav a:hover {
     grid-template-columns: 1fr;
   }
 
+  /* 모바일: 로고와 테마 버튼은 첫 줄, 메뉴는 둘째 줄 */
+  .nav {
+    flex-wrap: wrap;
+    min-height: 0;
+    padding-top: 0.75rem;
+  }
+
+  .nav-actions {
+    display: contents;
+  }
+
   nav {
-    display: none;
+    order: 3;
+    width: 100%;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.6rem 0 0.75rem;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .section {
+    scroll-margin-top: 112px;
   }
 
   .hero {
     padding-top: 3.5rem;
+  }
+
+  .case dl {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+
+  .case dd {
+    margin-bottom: 0.6rem;
   }
 }
 
@@ -393,6 +622,6 @@ nav a:hover {
   font-size: 0.85em;
   padding: 0.1rem 0.35rem;
   border-radius: 6px;
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--code-bg);
   color: var(--text);
 }
